@@ -1,6 +1,8 @@
 local TextService = game:GetService("TextService")
 local TweenService = game:GetService("TweenService")
 
+print("OK")
+
 local RemoteSpy = {}
 local Methods = import("modules/RemoteSpy")
 local ClosureSpy = import("modules/ClosureSpy")
