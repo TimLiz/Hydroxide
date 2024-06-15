@@ -394,6 +394,8 @@ local function createArg(instance, index, value)
 end
 
 function ArgsLog.new(log, callInfo)
+    print("LOG NEW")
+
     local instance = Assets.CallPod:Clone()
     local args = callInfo.args
 
