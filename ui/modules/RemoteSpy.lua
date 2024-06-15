@@ -367,8 +367,12 @@ end
 local buff = import("methods/buffer")
 
 local function createArg(instance, index, value)
+    print("Create args called")
+
     local arg = Assets.RemoteArg:Clone()
     local valueType = typeof(value)
+
+    print("Value is "..valueType)
 
     arg.Icon.Image = oh.Constants.Types[valueType]
     arg.Index.Text = index
