@@ -9,6 +9,8 @@ local user = "TimLiz" -- change if you're using a fork
 local branch = "revision"
 local importCache = {}
 
+print(user)
+
 local function hasMethods(methods)
     for name in pairs(methods) do
         if not environment[name] then
