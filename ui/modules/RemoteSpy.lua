@@ -376,6 +376,7 @@ local function createArg(instance, index, value)
     if valueType == "table" then
         arg.Label.Text = toString(value)
     elseif valueType == "buffer" then
+        print("Buff puff")
         arg.Label.Text = buff.toString(value)
     else
         arg.Label.Text = dataToString(value)
