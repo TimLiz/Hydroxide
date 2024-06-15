@@ -364,15 +364,19 @@ function Log.new(remote)
     return log
 end
 
+local buff = import("methods/buffer")
+
 local function createArg(instance, index, value)
     local arg = Assets.RemoteArg:Clone()
-    local valueType = type(value)
+    local valueType = typeof(value)
 
     arg.Icon.Image = oh.Constants.Types[valueType]
     arg.Index.Text = index
     
     if valueType == "table" then
         arg.Label.Text = toString(value)
+    elseif valueType == "buffer" then
+        arg.Label.Text = buff.toString(value)
     else
         arg.Label.Text = dataToString(value)
     end

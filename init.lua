@@ -106,6 +106,7 @@ environment.oh = {
         Types = {
             ["nil"] = "rbxassetid://4800232219",
             table = "rbxassetid://4666594276",
+            buffer = "rbxassetid://4666594276",
             string = "rbxassetid://4666593882",
             number = "rbxassetid://4666593882",
             boolean = "rbxassetid://4666593882",
