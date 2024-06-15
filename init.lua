@@ -1,7 +1,5 @@
 local environment = assert(getgenv, "<OH> ~ Your exploit is not supported")()
 
-print("KEK")
-
 if oh then
     oh.Exit()
 end
@@ -229,13 +227,13 @@ if readFile and writeFile then
                     local content
 
                     if (isFile and not isFile(file)) or not importCache[asset] then
-                        content = game:HttpGetAsync("https://raw.githubusercontent.com/" .. user .. "/Hydroxide/" .. branch .. '/' .. asset .. ".lua")
+                        content = game:HttpGetAsync("https://raw.githubusercontent.com/" .. user .. "/Hydroxide/" .. branch .. '/' .. asset .. ".lua?token=1")
                         writeFile(file, content)
                     else
                         local ran, result = pcall(readFile, file)
 
                         if (not ran) or not importCache[asset] then
-                            content = game:HttpGetAsync("https://raw.githubusercontent.com/" .. user .. "/Hydroxide/" .. branch .. '/' .. asset .. ".lua")
+                            content = game:HttpGetAsync("https://raw.githubusercontent.com/" .. user .. "/Hydroxide/" .. branch .. '/' .. asset .. ".lua?token=1")
                             writeFile(file, content)
                         else
                             content = result
@@ -244,7 +242,7 @@ if readFile and writeFile then
 
                     assets = { loadstring(content, asset .. '.lua')() }
                 else
-                    assets = { loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/" .. user .. "/Hydroxide/" .. branch .. '/' .. asset .. ".lua"), asset .. '.lua')() }
+                    assets = { loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/" .. user .. "/Hydroxide/" .. branch .. '/' .. asset .. ".lua?token=1"), asset .. '.lua')() }
                 end
             else
                 assets = { loadstring(readFile("hydroxide/" .. asset .. ".lua"), asset .. '.lua')() }
@@ -269,7 +267,7 @@ if readFile and writeFile then
                 local content
 
                 if not ran then
-                    content = game:HttpGetAsync("https://raw.githubusercontent.com/" .. user .. "/Hydroxide/" .. branch .. '/' .. asset .. ".lua?token=1")
+                    content = game:HttpGetAsync("https://raw.githubusercontent.com/" .. user .. "/Hydroxide/" .. branch .. '/' .. asset .. ".lua")
                     writeFile(file, content)
                 else
                     content = result
