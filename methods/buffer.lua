@@ -19,6 +19,7 @@ local original = {
 }
 
 function createKnownBuffer(buff, size)
+    print(typeof(buffer))
     size = size or buffer.len(buff)
 
     knownBuffers[buff] = table.create(size, "{}")
