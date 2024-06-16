@@ -38,18 +38,21 @@ end
 
 function bufferCreate(len)
     local ret = original.create(len)
+    print("Buffer was created!", ret)
     createKnownBuffer(ret, len)
 
     return ret
 end
 
 function numberWrite(buff, offset, value)
+    print("Number write", buff)
     local buffKnown = getBuffer(buff)
 
     buffKnown[offset] = value
 end
 
 function onStringWrite(buff, offset, value, count)
+    print("String write", buff)
     count = count or string.len(value)
     local ret = original.writestring(buff, offset, value, count)
     local buffKnown = getBuffer(buff)
