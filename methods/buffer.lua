@@ -135,8 +135,8 @@ local old
 old = hookfunction(buffer.copy, function(buff, targetOffset, s, sOffset, count)
     old(buff, targetOffset, s, sOffset, count)
 
-    count = count or buffer.len(s) - sOffset
     sOffset = sOffset or 0
+    count = count or buffer.len(s) - sOffset
 
     local til = targetOffset + count
 
