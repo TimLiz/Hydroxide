@@ -19,6 +19,7 @@ local original = {
 }
 
 function createKnownBuffer(buff, size)
+    print("Buffer was created!", buff)
     size = size or buffer.len(buff)
 
     knownBuffers[buff] = table.create(size, "{}")
@@ -38,21 +39,18 @@ end
 
 function bufferCreate(len)
     local ret = original.create(len)
-    print("Buffer was created!", ret)
     createKnownBuffer(ret, len)
 
     return ret
 end
 
 function numberWrite(buff, offset, value)
-    print("Number write", buff)
     local buffKnown = getBuffer(buff)
 
     buffKnown[offset] = value
 end
 
 function onStringWrite(buff, offset, value, count)
-    print("String write", buff)
     count = count or string.len(value)
     local ret = original.writestring(buff, offset, value, count)
     local buffKnown = getBuffer(buff)
@@ -117,6 +115,35 @@ local old
 old = hookfunction(buffer.writef64, function(buff, offset, value)
     old(buff, offset, value)
     numberWrite(buff, offset, value)
+end)
+
+local old
+old = hookfunction(buffer.fill, function(buff, offset, value, count)
+    old(buff, offset, value, count)
+
+    count = count or buffer.len(buff) - offset
+    local til = offset + count
+
+    local buffKnown = getBuffer(buff)
+
+    for i=offset,til do
+        buffKnown[i] = value
+    end
+end)
+
+local old
+old = hookfunction(buffer.copy, function(buff, targetOffset, s, sOffset, count)
+    old(buff, targetOffset, s, sOffset, count)
+
+    print("COPY TODO")
+    -- count = count or buffer.len(s) - sOffset
+    -- local til = offset + count
+
+    -- local buffKnown = getBuffer(buff)
+
+    -- for i=offset,til do
+    --     buffKnown[i] = value
+    -- end
 end)
 
 local Buff = {}
