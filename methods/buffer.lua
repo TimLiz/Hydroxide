@@ -19,12 +19,14 @@ local original = {
 }
 
 function createKnownBuffer(buff, size)
-    print(typeof(buffer))
-    size = size or buffer.len(buff)
+    -- print(typeof(buffer))
+    -- size = size or buffer.len(buff)
 
-    knownBuffers[buff] = table.create(size, "{}")
+    -- knownBuffers[buff] = table.create(size, "{}")
 
-    return knownBuffers[buff]
+    -- return knownBuffers[buff]
+
+    return {}
 end
 
 function getBuffer(buff)
