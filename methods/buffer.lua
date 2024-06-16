@@ -71,56 +71,54 @@ hookfunction(buffer.writestring, onStringWrite)
 
 local old
 old = hookfunction(buffer.writei8, function(buff, offset, value)
-    old(buff, offset, value)
     numberWrite(buff, offset, value)
+    old(buff, offset, value)
 end)
 
 local old
 old = hookfunction(buffer.writeu8, function(buff, offset, value)
-    old(buff, offset, value)
     numberWrite(buff, offset, value)
+    old(buff, offset, value)
 end)
 
 local old
 old = hookfunction(buffer.writei16, function(buff, offset, value)
-    old(buff, offset, value)
     numberWrite(buff, offset, value)
+    old(buff, offset, value)
 end)
 
 local old
 old = hookfunction(buffer.writeu16, function(buff, offset, value)
-    old(buff, offset, value)
     numberWrite(buff, offset, value)
+    old(buff, offset, value)
 end)
 
 local old
 old = hookfunction(buffer.writei32, function(buff, offset, value)
-    old(buff, offset, value)
     numberWrite(buff, offset, value)
+    old(buff, offset, value)
 end)
 
 local old
 old = hookfunction(buffer.writeu32, function(buff, offset, value)
-    old(buff, offset, value)
     numberWrite(buff, offset, value)
+    old(buff, offset, value)
 end)
 
 local old
 old = hookfunction(buffer.writef32, function(buff, offset, value)
-    old(buff, offset, value)
     numberWrite(buff, offset, value)
+    old(buff, offset, value)
 end)
 
 local old
 old = hookfunction(buffer.writef64, function(buff, offset, value)
-    old(buff, offset, value)
     numberWrite(buff, offset, value)
+    old(buff, offset, value)
 end)
 
 local old
 old = hookfunction(buffer.fill, function(buff, offset, value, count)
-    old(buff, offset, value, count)
-
     count = count or buffer.len(buff) - offset
     local til = offset + count
 
@@ -129,12 +127,12 @@ old = hookfunction(buffer.fill, function(buff, offset, value, count)
     for i=offset,til do
         buffKnown[i] = value
     end
+
+    old(buff, offset, value, count)
 end)
 
 local old
 old = hookfunction(buffer.copy, function(buff, targetOffset, s, sOffset, count)
-    old(buff, targetOffset, s, sOffset, count)
-
     sOffset = sOffset or 0
     count = count or buffer.len(s) - sOffset
 
@@ -152,6 +150,8 @@ old = hookfunction(buffer.copy, function(buff, targetOffset, s, sOffset, count)
         buffKnown[i] = buffKnownS[iS]
         iS += 1
     end
+
+    old(buff, targetOffset, s, sOffset, count)
 end)
 
 local Buff = {}
