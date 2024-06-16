@@ -56,8 +56,8 @@ function onStringWrite(buff, offset, value, count)
     local pos = 1
     local til = offset + count
 
-    for offset=offset,til do
-        buffKnown[offset] = string.sub(value, pos, pos)
+    for i=offset,til do
+        buffKnown[i] = string.sub(value, pos, pos)
         pos += 1
     end
 
