@@ -54,8 +54,9 @@ function onStringWrite(buff, offset, value, count)
     local buffKnown = getBuffer(buff)
 
     local pos = 1
+    local til = offset + count
 
-    for offset=offset,offset+count do
+    for offset=offset,til do
         buffKnown[offset] = string.sub(value, pos, pos)
         pos += 1
     end
