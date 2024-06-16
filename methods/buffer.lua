@@ -135,15 +135,21 @@ local old
 old = hookfunction(buffer.copy, function(buff, targetOffset, s, sOffset, count)
     old(buff, targetOffset, s, sOffset, count)
 
-    print("COPY TODO")
-    -- count = count or buffer.len(s) - sOffset
-    -- local til = offset + count
+    count = count or buffer.len(s) - sOffset
+    local til = targetOffset + count
 
-    -- local buffKnown = getBuffer(buff)
+    local buffKnown = getBuffer(buff)
+    local buffKnownS = getBuffer(s)
 
-    -- for i=offset,til do
-    --     buffKnown[i] = value
-    -- end
+    local iS = sOffset
+    local isTil = sOffset + count
+
+    for i=targetOffset,til do
+        if targetOffset > buffer.len(buff) then break end
+        if iS > isTil then break end
+        buffKnown[i] = buffKnownS[iS]
+        iS += 1
+    end
 end)
 
 local Buff = {}
