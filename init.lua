@@ -235,7 +235,7 @@ if readFile and writeFile then
                         local ran, result = pcall(readFile, file)
 
                         if (not ran) or not importCache[asset] then
-                            content = game:HttpGetAsync("https://raw.githubusercontent.com/" .. user .. "/Hydroxide/" .. branch .. '/' .. asset .. ".lua"..tostring(game:GetService("HttpService"):GenerateGUID()))
+                            content = game:HttpGetAsync("https://raw.githubusercontent.com/" .. user .. "/Hydroxide/" .. branch .. '/' .. asset .. ".lua?token="..tostring(game:GetService("HttpService"):GenerateGUID()))
                             writeFile(file, content)
                         else
                             content = result
@@ -244,7 +244,7 @@ if readFile and writeFile then
 
                     assets = { loadstring(content, asset .. '.lua')() }
                 else
-                    assets = { loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/" .. user .. "/Hydroxide/" .. branch .. '/' .. asset .. ".lua"..tostring(game:GetService("HttpService"):GenerateGUID())), asset .. '.lua')() }
+                    assets = { loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/" .. user .. "/Hydroxide/" .. branch .. '/' .. asset .. ".lua?token="..tostring(game:GetService("HttpService"):GenerateGUID())), asset .. '.lua')() }
                 end
             else
                 assets = { loadstring(readFile("hydroxide/" .. asset .. ".lua"), asset .. '.lua')() }
@@ -269,7 +269,7 @@ if readFile and writeFile then
                 local content
 
                 if not ran then
-                    content = game:HttpGetAsync("https://raw.githubusercontent.com/" .. user .. "/Hydroxide/" .. branch .. '/' .. asset .. ".lua"..tostring(game:GetService("HttpService"):GenerateGUID()))
+                    content = game:HttpGetAsync("https://raw.githubusercontent.com/" .. user .. "/Hydroxide/" .. branch .. '/' .. asset .. ".lua?token="..tostring(game:GetService("HttpService"):GenerateGUID()))
                     writeFile(file, content)
                 else
                     content = result
