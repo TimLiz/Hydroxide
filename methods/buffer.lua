@@ -50,6 +50,7 @@ function numberWrite(buff, offset, value)
 end
 
 function onStringWrite(buff, offset, value, count)
+    count = count or string.len(value)
     local ret = original.writestring(buff, offset, value, count)
     local buffKnown = getBuffer(buff)
 
