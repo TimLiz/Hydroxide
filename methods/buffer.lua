@@ -119,7 +119,6 @@ end)
 local Buff = {}
 
 function Buff.toString(data)
-    print("buffGuff")
     local str = ""
     local buff = getBuffer(data)
 

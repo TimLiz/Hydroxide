@@ -369,12 +369,9 @@ end
 local buff = import("methods/buffer")
 
 local function createArg(instance, index, value)
-    print("Create args called")
 
     local arg = Assets.RemoteArg:Clone()
     local valueType = typeof(value)
-
-    print("Value is "..valueType)
 
     arg.Icon.Image = oh.Constants.Types[valueType]
     arg.Index.Text = index
@@ -382,8 +379,10 @@ local function createArg(instance, index, value)
     if valueType == "table" then
         arg.Label.Text = toString(value)
     elseif valueType == "buffer" then
-        print("Buff puff")
-        arg.Label.Text = buff.toString(value)
+        print("Duping buffer ", value)
+        local stringed = buff.toString(value)
+        print("Tostring buffer: ", stringed)
+        arg.Label.Text = stringed
     else
         arg.Label.Text = dataToString(value)
     end
